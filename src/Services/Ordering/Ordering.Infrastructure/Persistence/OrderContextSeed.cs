@@ -11,7 +11,7 @@ namespace Ordering.Infrastructure.Persistence
             {
                 orderContext.Orders.AddRange(GetPreconfiguredOrders());
                 await orderContext.SaveChangesAsync();
-                logger.LogInformation($"Some orders have been seeded to db - context= {typeof(OrderContext)}");
+                logger.LogInformation("Seed database associated with context {DbContextName}", typeof(OrderContext).Name);
             }
         }
 
@@ -19,7 +19,10 @@ namespace Ordering.Infrastructure.Persistence
         {
             return new List<Order>
             {
-                new Order() {UserName = "swn", FirstName = "First User", LastName = "First", EmailAddress = "abc@mail.com", AddressLine = "Bahcelievler", Country = "Turkey", TotalPrice = 350 }
+                new Order() {UserName = "swn", FirstName = "Mehmet", LastName = "Ozkaya", EmailAddress = "ezozkme@gmail.com",
+                    AddressLine = "Bahcelievler", Country = "Turkey", TotalPrice = 350, CVV="some cvv", CardName="CardName",
+                    PaymentMethod =2, CardNumber="40223535262635352626", Expiration= "02/2024", LastModifiedBy="nil", LastModifiedDate= DateTime.Now,
+                CreatedBy="nil", CreatedDate= DateTime.Now, State = "S", ZipCode="6545"}
             };
         }
     }

@@ -19,16 +19,18 @@ namespace Ordering.Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTime.UtcNow;
+                        entry.Entity.CreatedDate = DateTime.Now;
                         entry.Entity.CreatedBy = "swn";
+                        entry.Entity.LastModifiedDate = DateTime.Now;
+                        entry.Entity.LastModifiedBy = "swn";
                         break;
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
+                        entry.Entity.LastModifiedDate = DateTime.Now;
                         entry.Entity.LastModifiedBy = "swn";
                         break;
                 }
-
             }
+
             return base.SaveChangesAsync(cancellationToken);
         }
     }
